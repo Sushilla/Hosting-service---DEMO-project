@@ -25,7 +25,6 @@ export class ServerResourcesComponent {
 
   constructor(public dialog: MatDialog) {
     this.SimulateServerLoad();
-    // @Inject(MAT_DIALOG_DATA) public data: any
   }
 
   SimulateServerLoad() {

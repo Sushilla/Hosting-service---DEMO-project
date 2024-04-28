@@ -46,12 +46,12 @@
     "
   >
     <p>Server properties</p>
-    <div>
+    <div style="position: relative">
       <span style="display: flex; align-items: center">
         <p>CPU: {{ UserServerProperties.cpu }}</p>
         <button
           mat-icon-button
-          style="margin-left: 5px"
+          style="position: absolute; right: calc(-48px - 5px)"
           (click)="OpenCPUInformationModal()"
         >
           <mat-icon>info</mat-icon>
