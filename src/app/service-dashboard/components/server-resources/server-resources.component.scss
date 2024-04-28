@@ -1,0 +1,19 @@
+.container-resources {
+  --container-margin: 20px;
+  --container-margin-right: 10px; // Half of --container-margin
+
+  margin: var(--container-margin) var(--container-margin-right)
+    var(--container-margin) var(--container-margin);
+  width: calc(100% - var(--container-margin) - var(--container-margin-right));
+  height: calc(100% - (var(--container-margin) * 2));
+  background-color: #ede8f5;
+  border-radius: 20px;
+}
+
+.circle {
+  --circle-size: 200px;
+  width: var(--circle-size);
+  height: var(--circle-size);
+  border-radius: var(--circle-size);
+  background: #adbbda;
+}

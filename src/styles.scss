@@ -1,1 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
+
+@font-face {
+  font-family: "Reddit Mono", monospace;
+  src: url("./assets/fonts/Reddit_Mono/RedditMono-VariableFont_wght.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: "Reddit Mono", monospace !important;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+p {
+  margin: 0 !important;
+}
+
+.material-icons {
+  font-family: "Material Icons" !important;
+}
+
+.a {
+  background-color: #3d52a0;
+  background-color: #7091e6;
+  background-color: #8697c4;
+  background-color: #adbbda;
+  background-color: #ede8f5;
+}

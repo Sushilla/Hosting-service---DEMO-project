@@ -1,0 +1,10 @@
+.container-list {
+  --container-margin: 20px;
+  --container-margin-left: 10px; // Half of --container-margin
+
+  margin: var(--container-margin) var(--container-margin) var(--container-margin) var(--container-margin-left);
+  width: calc(100% - var(--container-margin) - var(--container-margin-left));
+  height: calc(100% - (var(--container-margin) * 2));
+  background-color: #ede8f5;
+  border-radius: 20px;
+}
