@@ -62,5 +62,6 @@ export class ServerResourcesComponent {
       { data: this.UserServerProperties });
   }
 
-  IncreaseServerStorage() { }
+  IncreaseServerStorage() {
+  }
 }
