@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Inject, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Inject,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import {
   MAT_DIALOG_DATA,
@@ -9,7 +15,7 @@ import {
   MatDialogRef,
   MatDialogTitle,
 } from '@angular/material/dialog';
-import { MatStepperModule } from '@angular/material/stepper';
+import { MatStepper, MatStepperModule } from '@angular/material/stepper';
 import { ServerPlanLongEnum } from '../../../service-dashboard/Models/Enum/ServerPlanEnum';
 import { CommonModule } from '@angular/common';
 import { MatRadioModule } from '@angular/material/radio';
@@ -49,6 +55,7 @@ import { UIServiceService } from '../../../service-dashboard/Services/UIService/
 })
 export class NewServiceModalComponent {
   PlanEnum = ServerPlanLongEnum;
+  @ViewChild('stepper') stepper!: MatStepper;
 
   SelectionPlanGroup = this._formBuilder.group({
     // Domain
@@ -166,13 +173,9 @@ export class NewServiceModalComponent {
 
     this.dialogRef.close(newService);
   }
+
+  MoveToNextPage(){
+    this.stepper.selectedIndex += 1;
+  }
 }
 
-// {
-//   "service_name": "First Server",
-//   "server_configuration": {
-//     "current_server_plan": 0,
-//     "storage": 10,
-//     "used_storage": 8
-//   },
-// }

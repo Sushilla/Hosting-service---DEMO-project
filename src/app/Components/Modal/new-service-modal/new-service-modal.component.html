@@ -70,7 +70,6 @@
                     </div>
 
                 </form>
-
             </mat-step>
 
 
@@ -80,7 +79,7 @@
                 <form [formGroup]="SelectionPlanGroup">
                     <section>
                         <mat-checkbox color="primary" formControlName="SelectedEmailProtection">Email
-                            protection?</mat-checkbox>
+                            protection</mat-checkbox>
                     </section>
 
                     <div [ngClass]="f.SelectedEmailProtection ? '' : 'noClick'"
@@ -98,16 +97,25 @@
             </mat-step>
 
             <mat-step label="Check out">
-                <p>Total payment for: {{GetPriceForYear() | number: '1.2-2'}}€</p>
+                <p *ngIf="GetPriceForYear() !== 0" style="margin: 20px !important;">Total payment for:
+                    {{GetPriceForYear() |
+                    number: '1.2-2'}}€</p>
+                <p *ngIf="GetPriceForYear() === 0" style="margin: 20px !important;">You did not selected any provided
+                    services.
+                    Please, select one and continue.</p>
                 <div>
                     <button class="decline" mat-button mat-dialog-close>Cancel</button>
-                    <button class="pay" mat-button [disabled]="GetPriceForYear() == 0" (click)="CreateNewService()">Check out</button>
+                    <button class="pay" mat-button [disabled]="GetPriceForYear() == 0"
+                        (click)="CreateNewService()">Check out</button>
                 </div>
             </mat-step>
 
         </mat-stepper>
 
-        <p *ngIf="stepper.selectedIndex !== 3">Year total: {{GetPriceForYear() | number: '1.2-2'}}€</p>
+        <div *ngIf="stepper.selectedIndex !==3" style="display: flex; justify-content: space-between;">
+            <p>Year total: {{GetPriceForYear() | number: '1.2-2'}}€</p>
+            <button mat-flat-button (click)="MoveToNextPage()">Next</button>
+        </div>
 
     </mat-dialog-content>
 
