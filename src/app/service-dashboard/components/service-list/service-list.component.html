@@ -1,27 +1,53 @@
 <div class="container-list">
 
-  <div style="display: flex; justify-content: space-between; padding: 10px;">
-    <h1 class="bold">Services:</h1>
-    <button mat-button class="buttons" (click)="AddNewServiceModal()">New service</button>
+  <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px;">
+    <h1 class="bold" style="margin: 0;">Server list:</h1>
+    <button mat-flat-button class="buttons" (click)="AddNewServiceModal()">New service</button>
   </div>
 
-  <div style="margin: 10px;">
+  <div style="margin: 20px;">
 
-    <div *ngFor="let service of UserServiceList" style="border-bottom: 1px solid black;">
-      <p>Server: {{service.server_name}}</p>
-      <p class="display-align_center">Self domain:
-        <mat-icon [ngStyle]="{'color':service.own_domain ? '#28a745' : 'red'}">{{service.own_domain ?
-          "check_circle_outline" : "remove_circle_outline"}}</mat-icon>
-      </p>
-      <p>IP address: {{service.domain}}</p>
-      <p class="display-align_center">Email protection:
-        <mat-icon [ngStyle]="{'color':service.email_protection ? '#28a745' : 'red'}">{{service.email_protection ?
-          "check_circle_outline" : "remove_circle_outline"}}</mat-icon>
-      </p>
-      <div class="display-align_center">
-        <p>Storage: {{ service.storage - service.used_storage }} GB free ({{GetPercentageOfFreeStorage(service)*100 | number: '1.2-2'}}%)</p>
-        <mat-icon [ngStyle]="{'color': GetPercentageOfFreeStorage(service) < 0.5 ? 'green' : 
-          GetPercentageOfFreeStorage(service) < 0.8 ? 'orange' : 'red'}">fiber_manual_record</mat-icon>
+    <div *ngFor="let service of UserServiceList"
+      style="border-bottom: 2px solid #c5c5c5; display: flex; justify-content: space-between; align-items: center;">
+
+      <div>
+        <span class="display">
+          <p class="bold">Server: </p>
+          <p style="margin-left: 10px !important;">{{service.server_name}}</p>
+        </span>
+
+        <span class="display" style="align-items: center; flex-wrap: wrap;">
+          <p class="display-align_center bold">Domain:
+            <mat-icon [ngStyle]="{'color':service.own_domain ? '#28a745' : 'red'}"
+              style="margin: 0 10px !important;">{{service.own_domain ?
+              "check_circle_outline" : "remove_circle_outline"}}</mat-icon>
+          </p>
+
+            <p>{{service.domain}}</p>
+        </span>
+
+        <span class="display">
+          <p class="display-align_center bold">Email protection:
+            <mat-icon [ngStyle]="{'color':service.email_protection ? '#28a745' : 'red'}"
+              style="margin-left: 10px !important;">{{service.email_protection ?
+              "check_circle_outline" : "remove_circle_outline"}}</mat-icon>
+          </p>
+        </span>
+
+        <span class="display">
+          <p class="bold">Storage: </p>
+          <p style="margin-left: 10px !important;">{{ service.storage - service.used_storage }} GB free
+            ({{GetPercentageOfFreeStorage(service)*100 |
+            number: '1.2-2'}}%)</p>
+          <mat-icon [ngStyle]="{'color': GetPercentageOfFreeStorage(service) < 0.5 ? 'green' : 
+            GetPercentageOfFreeStorage(service) < 0.8 ? 'orange' : 'red'}">fiber_manual_record</mat-icon>
+        </span>
+
+      </div>
+
+      <div style="max-width: 100px;">
+        <button mat-flat-button style="background-color: #3d52a0; color: #ffffff;"
+          (click)="OpenServerInformationPanel(service)">More</button>
       </div>
     </div>
   </div>

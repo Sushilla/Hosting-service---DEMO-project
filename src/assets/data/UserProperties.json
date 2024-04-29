@@ -7,5 +7,32 @@
     "own_domain": false,
     "domain": "192.168.1.100",
     "email_protection": false
+  },
+  {
+    "current_server_plan": 1,
+    "server_name": "Second server",
+    "storage": 100,
+    "used_storage": 51,
+    "own_domain": false,
+    "domain": "203.156.78.22",
+    "email_protection": true
+  },
+  {
+    "current_server_plan": 2,
+    "server_name": "Third server",
+    "storage": 15,
+    "used_storage": 9,
+    "own_domain": false,
+    "domain": "87.201.144.99",
+    "email_protection": false
+  },
+  {
+    "current_server_plan": 2,
+    "server_name": "Best server",
+    "storage": 256,
+    "used_storage": 100,
+    "own_domain": true,
+    "domain": "stakles.lt",
+    "email_protection": true
   }
 ]
