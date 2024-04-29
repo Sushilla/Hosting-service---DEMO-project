@@ -1,6 +1,6 @@
 [
   {
-    "service_name": "Server",
+    "service_name": "First Server",
     "own_domain": false,
     "domain": "192.168.1.100",
     "own_server": true,
@@ -12,7 +12,19 @@
     "email_protection": false
   },
   {
-    "service_name": "Domain",
+    "service_name": "Only Email",
+    "own_domain": false,
+    "domain": "",
+    "own_server": false,
+    "server_configuration": {
+      "current_server_plan": 0,
+      "storage": 0,
+      "used_storage": 0
+    },
+    "email_protection": true
+  },
+  {
+    "service_name": "Only Domain",
     "own_domain": true,
     "domain": "paintball.eu",
     "own_server": false,
@@ -24,19 +36,7 @@
     "email_protection": true
   },
   {
-    "service_name": "Domain",
-    "own_domain": true,
-    "domain": "paintball.eu",
-    "own_server": false,
-    "server_configuration": {
-      "current_server_plan": 0,
-      "storage": 0,
-      "used_storage": 0
-    },
-    "email_protection": true
-  },
-  {
-    "service_name": "Server",
+    "service_name": "Second Server",
     "own_domain": false,
     "domain": "203.156.78.22",
     "own_server": true,
@@ -48,7 +48,7 @@
     "email_protection": true
   },
   {
-    "service_name": "Server",
+    "service_name": "Third Server",
     "own_domain": false,
     "domain": "87.201.144.99",
     "own_server": true,
@@ -60,7 +60,7 @@
     "email_protection": false
   },
   {
-    "service_name": "Server",
+    "service_name": "Fourth Server",
     "own_domain": true,
     "domain": "stakles.lt",
     "own_server": true,

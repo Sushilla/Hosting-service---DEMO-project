@@ -5,14 +5,20 @@
     <button mat-flat-button class="buttons" (click)="AddNewServiceModal()">New service</button>
   </div>
 
-  <div style="margin: 20px;">
+  <div style="margin: 20px; overflow-y: auto; height: calc(100% - 76px - 40px );">
 
     <div *ngFor="let service of UserServiceList"
-      style="border-bottom: 2px solid #c5c5c5; display: flex; justify-content: space-between; align-items: center;">
+      style="border-bottom: 2px solid #c5c5c5; display: flex; justify-content: space-between; align-items: center; padding: 10px;">
 
       <div>
         <span class="display">
           <p class="bold">Service type: </p>
+          <p style="margin-left: 10px !important;">{{GetServiceType(service.own_server, service.own_domain,
+            service.email_protection)}}</p>
+        </span>
+
+        <span class="display">
+          <p class="bold">Name: </p>
           <p style="margin-left: 10px !important;">{{service.service_name}}</p>
         </span>
 
@@ -36,7 +42,8 @@
 
         <span *ngIf="service.own_server" class="display">
           <p class="bold">Storage: </p>
-          <p style="margin-left: 10px !important;">{{ service.server_configuration.storage - service.server_configuration.used_storage }} GB free
+          <p style="margin-left: 10px !important;">{{ service.server_configuration.storage -
+            service.server_configuration.used_storage }} GB free
             ({{GetPercentageOfFreeStorage(service)*100 |
             number: '1.2-2'}}%)</p>
           <mat-icon [ngStyle]="{'color': GetPercentageOfFreeStorage(service) < 0.5 ? 'green' : 
@@ -46,9 +53,8 @@
       </div>
 
       <div style="max-width: 100px; display: flex; flex-direction: column;">
-        <button mat-flat-button style="background-color: #7091e6; color: #ffffff; margin: 5px 10px"
-          (click)="ServerInformationData.emit(service)">Pay</button>
-        <button mat-flat-button *ngIf="service.own_server"
+        <button mat-flat-button style="background-color: #7091e6; color: #ffffff; margin: 5px 10px">Pay</button>
+        <button mat-flat-button *ngIf=" service.own_server"
           style="background-color: #3d52a0; color: #ffffff; margin: 5px 10px;"
           (click)="ServerInformationData.emit(service)">More</button>
       </div>
