@@ -4,8 +4,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { ServerProperties } from '../../Models/Interface/ServerProperties';
 import { MatDialog } from '@angular/material/dialog';
-import { CPUInformationModalComponent } from '../../../Components/Modal/cpuinformation-modal/cpuinformation-modal.component';
 import { UserServerList } from '../../Models/Interface/UserServerList';
+import { CPUInformationModalComponent } from '../../../Components/Modal/cpu-information-modal/cpu-information-modal.component';
 
 @Component({
   selector: 'app-server-resources',
