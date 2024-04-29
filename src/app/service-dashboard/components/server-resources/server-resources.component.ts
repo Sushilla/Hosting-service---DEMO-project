@@ -13,7 +13,6 @@ import { CPUInformationModalComponent } from '../../../Components/Modal/cpuinfor
   templateUrl: './server-resources.component.html',
   styleUrl: './server-resources.component.scss',
 })
-
 export class ServerResourcesComponent {
   server_properties: any = {
     storage: 10,
@@ -22,6 +21,7 @@ export class ServerResourcesComponent {
   server_load: number = 1;
 
   @Input() UserServerProperties!: ServerProperties;
+  @Input() ServerName!: string;
 
   constructor(public dialog: MatDialog) {
     this.SimulateServerLoad();
@@ -58,10 +58,12 @@ export class ServerResourcesComponent {
   }
 
   OpenCPUInformationModal() {
-    this.dialog.open(CPUInformationModalComponent,
-      { data: this.UserServerProperties });
+    console.log(this.UserServerProperties);
+
+    this.dialog.open(CPUInformationModalComponent, {
+      data: this.UserServerProperties.cpu_properties,
+    });
   }
 
-  IncreaseServerStorage() {
-  }
+  IncreaseServerStorage() {}
 }

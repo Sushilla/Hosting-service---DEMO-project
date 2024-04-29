@@ -31,6 +31,33 @@ p {
   font-family: "Material Icons" !important;
 }
 
+.display-center-column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.display-justify_center {
+  display: flex;
+  justify-content: center;
+}
+
+.display-align_center {
+  display: flex;
+  align-items: center;
+}
+
+.display-align_center-column {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.bold {
+  font-weight: bold;
+}
+
 .a {
   background-color: #3d52a0;
   background-color: #7091e6;

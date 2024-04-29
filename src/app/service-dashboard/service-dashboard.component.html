@@ -2,10 +2,8 @@
   <app-header></app-header>
 
   <div class="container-services" style="display: flex; flex-direction: row">
-    <app-server-resources
-      style="width: 40%"
-      [UserServerProperties]="ServerPlans[UserProperties.currentServerPlan]"
-    ></app-server-resources>
+    <app-server-resources style="width: 40%" [UserServerProperties]="ServerPlans[UserProperties.current_server_plan]"
+      [ServerName]="UserProperties.server_name"></app-server-resources>
 
     <app-service-list style="width: 60%"></app-service-list>
   </div>

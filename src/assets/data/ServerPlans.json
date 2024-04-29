@@ -1,26 +1,38 @@
 [
   {
     "id": 0,
-    "cpu": "AMD Ryzen 5 3600",
-    "cores": 6,
-    "clock": 4.2,
-    "threads": 12,
-    "ram": 64
+    "cpu_properties": {
+      "cpu": "AMD Ryzen 5 3600",
+      "cores": 6,
+      "clock": 4.2,
+      "threads": 12
+    },
+    "ram": 64,
+    "storage": 10,
+    "used_storage": 10
   },
   {
     "id": 1,
-    "cpu": "Intel Core i5 10600K",
-    "cores": 6,
-    "clock": 4.8,
-    "threads": 12,
-    "ram": 128
+    "cpu_properties": {
+      "cpu": "Intel Core i5 10600K",
+      "cores": 6,
+      "clock": 4.8,
+      "threads": 12
+    },
+    "ram": 128,
+    "storage": 10,
+    "used_storage": 10
   },
   {
     "id": 2,
-    "cpu": "AMD EPYC 74F3",
-    "cores": 24,
-    "clock": 4,
-    "threads": 48,
-    "ram": 256
+    "cpu_properties": {
+      "cpu": "AMD EPYC 74F3",
+      "cores": 24,
+      "clock": 4,
+      "threads": 48
+    },
+    "ram": 256,
+    "storage": 10,
+    "used_storage": 10
   }
 ]

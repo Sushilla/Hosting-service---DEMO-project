@@ -1,3 +1,4 @@
 export interface UserProperties {
-    currentServerPlan: number;
+    current_server_plan: number;
+    server_name: string;
 }
