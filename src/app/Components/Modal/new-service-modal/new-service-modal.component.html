@@ -107,7 +107,8 @@
                     <p>Name your service</p>
                     <form [formGroup]="SelectionPlanGroup">
                         <mat-form-field class="form-field">
-                            <input matInput type="text" placeholder="Service name" formControlName="ServiceName">
+                            <input matInput type="text" placeholder="Service name" formControlName="ServiceName" required>
+                            <mat-error>Please enter service name</mat-error>
                         </mat-form-field>
                     </form>
                 </div>
