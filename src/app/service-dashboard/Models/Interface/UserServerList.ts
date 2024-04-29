@@ -4,6 +4,6 @@ export interface UserServerList {
   storage: number;
   used_storage: number;
   own_domain: boolean;
-  domain: string | null;
+  domain: string;
   email_protection: boolean;
 }

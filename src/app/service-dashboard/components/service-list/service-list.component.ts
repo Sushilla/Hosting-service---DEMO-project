@@ -16,4 +16,8 @@ export class ServiceListComponent {
   @Input() UserServiceList!: UserServerList[];
 
   AddNewServiceModal() {}
+
+  GetPercentageOfFreeStorage(service_data: UserServerList): number{
+    return (service_data.used_storage / service_data.storage);
+  }
 }
