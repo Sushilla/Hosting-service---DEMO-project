@@ -4,9 +4,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { ServerProperties } from '../../Models/Interface/ServerProperties';
 import { MatDialog } from '@angular/material/dialog';
-import { ServerConfiguration, UserServerList } from '../../Models/Interface/UserServerList';
+import {
+  ServerConfiguration,
+  UserServerList,
+} from '../../Models/Interface/UserServerList';
 import { CPUInformationModalComponent } from '../../../Components/Modal/cpu-information-modal/cpu-information-modal.component';
 import { StorageSpaceUpgradeComponent } from '../../../Components/Modal/storage-space-upgrade/storage-space-upgrade.component';
+import { Pricing } from '../../Models/Interface/Pricing';
 
 @Component({
   selector: 'app-server-resources',
@@ -20,6 +24,7 @@ export class ServerResourcesComponent {
 
   @Input() UserPlanProperties!: ServerProperties;
   @Input() UserServerProperties!: UserServerList;
+  @Input() ServicePricing!: Pricing;
   @Output() ClosePanel = new EventEmitter();
 
   constructor(private dialog: MatDialog) {
@@ -68,20 +73,22 @@ export class ServerResourcesComponent {
   }
 
   OpenCPUInformationModal() {
-    console.log(this.UserPlanProperties);
-
     this.dialog.open(CPUInformationModalComponent, {
       data: this.UserPlanProperties.cpu_properties,
     });
   }
 
-  IncreaseServerStorage() {
+  UpgradeServer() {
     const dialogRef = this.dialog.open(StorageSpaceUpgradeComponent, {
-      data: this.UserServerProperties.server_configuration,
+      data: {
+        server_configuration: this.UserServerProperties.server_configuration,
+        service_pricing: this.ServicePricing,
+      },
     });
-    dialogRef.afterClosed().subscribe((updatedStorage: ServerConfiguration) => {
-      if (updatedStorage) {
-        console.log(updatedStorage);
+
+    dialogRef.afterClosed().subscribe((UpgradedStorage: any) => {
+      if (UpgradedStorage) {
+        this.UserServerProperties.server_configuration = UpgradedStorage;
       }
     });
   }

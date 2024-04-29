@@ -4,7 +4,7 @@
   <div class="display-row container-services">
     <app-server-resources *ngIf="SelectedService" class="server-resources"
       [UserPlanProperties]="ServerPlans[SelectedService.server_configuration.current_server_plan]"
-      [UserServerProperties]="SelectedService" (ClosePanel)="SelectedService = undefined"></app-server-resources>
+      [UserServerProperties]="SelectedService" [ServicePricing]="PricingForService" (ClosePanel)="SelectedService = undefined"></app-server-resources>
 
     <app-service-list [ngClass]="!SelectedService ? 'service-list_expanded ': 'service-list_shrinked'"
       [UserServiceList]="UserServersList" [ServicePricing]="PricingForService"
