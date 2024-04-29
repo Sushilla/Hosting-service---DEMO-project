@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, EventEmitter, Inject, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import {
   MAT_DIALOG_DATA,
@@ -6,6 +6,7 @@ import {
   MatDialogClose,
   MatDialogContent,
   MatDialogModule,
+  MatDialogRef,
   MatDialogTitle,
 } from '@angular/material/dialog';
 import { MatStepperModule } from '@angular/material/stepper';
@@ -17,6 +18,11 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { Pricing } from '../../../service-dashboard/Models/Interface/Pricing';
 import { MatSliderModule } from '@angular/material/slider';
+import {
+  ServerConfiguration,
+  UserServerList,
+} from '../../../service-dashboard/Models/Interface/UserServerList';
+import { UIServiceService } from '../../../service-dashboard/Services/UIService/uiservice.service';
 
 @Component({
   selector: 'app-new-service-modal',
@@ -50,9 +56,9 @@ export class NewServiceModalComponent {
     DomainValue: [''],
     // Server
     SelectedServer: [false],
-    ServerPlan: 0,
+    ServerPlan: [0],
     ServerDefaultStorage: [true],
-    ServerStorageSize: 128,
+    ServerStorageSize: [128],
     // Email
     SelectedEmailProtection: [false],
     EmailValue: [''],
@@ -60,10 +66,10 @@ export class NewServiceModalComponent {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: Pricing,
-    private _formBuilder: FormBuilder
-  ) {
-    console.log(data);
-  }
+    private _formBuilder: FormBuilder,
+    private uiService: UIServiceService,
+    private dialogRef: MatDialogRef<NewServiceModalComponent>
+  ) {}
 
   get f() {
     return this.SelectionPlanGroup.value;
@@ -106,7 +112,67 @@ export class NewServiceModalComponent {
     return storage;
   }
 
-  CreateNewService(){
-    
+  CreateNewService() {
+    let newService: UserServerList = {} as UserServerList;
+    newService.server_configuration = {} as ServerConfiguration;
+
+    if (
+      typeof this.f.SelectedDomain == 'boolean' &&
+      typeof this.f.SelectedEmailProtection == 'boolean' &&
+      typeof this.f.SelectedServer == 'boolean'
+    ) {
+      // Status configuration
+      newService.own_domain = this.f.SelectedDomain;
+      newService.own_server = this.f.SelectedServer;
+      newService.email_protection = this.f.SelectedEmailProtection;
+
+      // Domain configuration
+      if (this.f.SelectedDomain && typeof this.f.DomainValue == 'string') {
+        newService.domain = this.f.DomainValue;
+      }
+
+      // Server configuration
+      if (!this.f.SelectedDomain && this.f.SelectedServer) {
+        newService.domain = this.uiService.GenerateRandomIPv4Address();
+      } else if (
+        this.f.SelectedServer &&
+        this.f.SelectedServer &&
+        typeof this.f.DomainValue == 'string'
+      ) {
+        newService.domain = this.f.DomainValue;
+      }
+
+      if (this.f.SelectedServer) {
+        if (typeof this.f.ServerPlan == 'number')
+          // Plan
+          newService.server_configuration.current_server_plan =
+            this.f.ServerPlan;
+
+        if (typeof this.f.ServerStorageSize == 'number') {
+          // Storage
+          if (this.f.ServerDefaultStorage)
+            newService.server_configuration.storage = 10;
+          else
+            newService.server_configuration.storage = this.f.ServerStorageSize;
+        }
+      } else {
+        newService.server_configuration.current_server_plan = 0;
+        newService.server_configuration.storage = 0;
+      }
+
+      newService.server_configuration.used_storage = 0;
+      newService.service_name = 'asdasd';
+    }
+
+    this.dialogRef.close(newService);
   }
 }
+
+// {
+//   "service_name": "First Server",
+//   "server_configuration": {
+//     "current_server_plan": 0,
+//     "storage": 10,
+//     "used_storage": 8
+//   },
+// }

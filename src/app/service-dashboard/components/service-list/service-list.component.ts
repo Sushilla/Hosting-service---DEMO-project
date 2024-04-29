@@ -73,8 +73,13 @@ export class ServiceListComponent {
   }
 
   AddNewServiceModal() {
-    this.dialog.open(NewServiceModalComponent, {
+    const dialogRef = this.dialog.open(NewServiceModalComponent, {
       data: this.ServicePricing,
+    });
+    dialogRef.afterClosed().subscribe((new_service: UserServerList) => {
+      if (new_service) {
+        this.UserServiceList.push(new_service);
+      }
     });
   }
 }
