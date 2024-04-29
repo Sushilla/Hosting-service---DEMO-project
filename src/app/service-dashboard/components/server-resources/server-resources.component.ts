@@ -4,8 +4,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { ServerProperties } from '../../Models/Interface/ServerProperties';
 import { MatDialog } from '@angular/material/dialog';
-import { UserServerList } from '../../Models/Interface/UserServerList';
+import {
+  ServerConfiguration,
+  UserServerList,
+} from '../../Models/Interface/UserServerList';
 import { CPUInformationModalComponent } from '../../../Components/Modal/cpu-information-modal/cpu-information-modal.component';
+import { StorageSpaceUpgradeComponent } from '../../../Components/Modal/storage-space-upgrade/storage-space-upgrade.component';
+import { Pricing } from '../../Models/Interface/Pricing';
 
 @Component({
   selector: 'app-server-resources',
@@ -19,6 +24,7 @@ export class ServerResourcesComponent {
 
   @Input() UserPlanProperties!: ServerProperties;
   @Input() UserServerProperties!: UserServerList;
+  @Input() ServicePricing!: Pricing;
   @Output() ClosePanel = new EventEmitter();
 
   constructor(private dialog: MatDialog) {
@@ -51,17 +57,39 @@ export class ServerResourcesComponent {
       currentLoad += trend * fluctuation;
 
       // Ensure the load stays within 0 and 100
-      this.server_load = Math.round(Math.max(1, Math.min(100, currentLoad)));
+      let maxPeak = 100;
+      if (
+        this.UserServerProperties.server_configuration.current_server_plan == 1
+      )
+        maxPeak = 83;
+      else if (
+        this.UserServerProperties.server_configuration.current_server_plan == 2
+      )
+        maxPeak = 28;
+      this.server_load = Math.round(
+        Math.max(1, Math.min(maxPeak, currentLoad))
+      );
     }, 1000);
   }
 
   OpenCPUInformationModal() {
-    console.log(this.UserPlanProperties);
-
     this.dialog.open(CPUInformationModalComponent, {
       data: this.UserPlanProperties.cpu_properties,
     });
   }
 
-  IncreaseServerStorage() {}
+  UpgradeServer() {
+    const dialogRef = this.dialog.open(StorageSpaceUpgradeComponent, {
+      data: {
+        server_configuration: this.UserServerProperties.server_configuration,
+        service_pricing: this.ServicePricing,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((UpgradedStorage: any) => {
+      if (UpgradedStorage) {
+        this.UserServerProperties.server_configuration = UpgradedStorage;
+      }
+    });
+  }
 }

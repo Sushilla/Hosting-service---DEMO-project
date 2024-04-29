@@ -14,7 +14,6 @@ import { CPUProperties } from '../../../service-dashboard/Models/Interface/Serve
   selector: 'app-cpu-information-modal',
   standalone: true,
   imports: [
-    MatButtonModule,
     MatDialogTitle,
     MatDialogContent,
     MatDialogActions,
@@ -26,7 +25,5 @@ import { CPUProperties } from '../../../service-dashboard/Models/Interface/Serve
   styleUrl: './cpu-information-modal.component.scss',
 })
 export class CPUInformationModalComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: CPUProperties) {
-    console.log(data);
-  }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: CPUProperties) {}
 }

@@ -76,6 +76,8 @@ export class NewServiceModalComponent {
     // Email
     SelectedEmailProtection: [false],
     EmailValue: [''],
+    // Name
+    ServiceName: ['', Validators.required],
   });
 
   constructor(
@@ -127,6 +129,7 @@ export class NewServiceModalComponent {
   }
 
   CreateNewService() {
+    let canCreate: Boolean = false;
     let newService: UserServerList = {} as UserServerList;
     newService.server_configuration = {} as ServerConfiguration;
 
@@ -175,10 +178,11 @@ export class NewServiceModalComponent {
       }
 
       newService.server_configuration.used_storage = 0;
-      newService.service_name = 'asdasd';
+      if (typeof this.f.ServiceName == 'string')
+        newService.service_name = this.f.ServiceName;
+      if (this.f.ServiceName !== '') canCreate = true;
     }
-
-    this.dialogRef.close(newService);
+    if (canCreate) this.dialogRef.close(newService);
   }
 
   MoveToNextPage() {

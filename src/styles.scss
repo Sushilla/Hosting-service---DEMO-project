@@ -60,11 +60,12 @@ p {
 
 .display-justify_end {
   display: flex;
-  justify-content: end
+  justify-content: end;
 }
 
-.display-justify_evenly{
-  display: flex; justify-content: space-evenly;
+.display-justify_evenly {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .display-align_center-column {
@@ -83,7 +84,6 @@ p {
   align-items: center;
   justify-content: space-between;
 }
-
 
 .display-align_center-justify_center {
   display: flex;
@@ -105,13 +105,5 @@ p {
 }
 
 .noClick {
-  pointer-events:none
-}
-
-.a {
-  background-color: #3d52a0;
-  background-color: #7091e6;
-  background-color: #8697c4;
-  background-color: #adbbda;
-  background-color: #ede8f5;
+  pointer-events: none;
 }

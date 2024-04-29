@@ -62,7 +62,7 @@
       </div>
 
       <div class="display-column button-container">
-        <button mat-flat-button class="pay">Pay</button>
+        <button mat-flat-button class="pay" (click)="OpenSnackBar()">Pay</button>
         <button mat-flat-button *ngIf=" service.own_server" class="more"
           (click)="ServerInformationData.emit(service)">More</button>
       </div>

@@ -1,0 +1,39 @@
+<div style="margin: 10px;  min-width: 500px;">
+    <div class="display-align_center-justify_between">
+        <h2 mat-dialog-title>Upgrade server</h2>
+        <button mat-icon-button mat-dialog-close>
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+
+    <mat-dialog-content>
+
+        <mat-radio-group class="display-justify_evenly server-pricing" [ngModelOptions]="{standalone: true}"
+            [(ngModel)]="data.server_configuration.current_server_plan">
+            <mat-radio-button *ngFor="let index of [0,1,2]" color="primary" [value]="index">
+                <span>
+                    <p class="bold">
+                        {{PlanEnum[index]}}
+                    </p>
+                    <p>{{data.service_pricing.server_monthly[index] | number: '1.2-2'}}€</p>
+                </span>
+            </mat-radio-button>
+        </mat-radio-group>
+
+        <p lass="p-margin">Select storage capacity</p>
+        <div class="display-align_center-column">
+            <label>Storage space</label>
+            <label>{{GetFormatedStorageText()}}</label>
+        </div>
+        <mat-slider class="slider" max="10240" min="128" step="128">
+            <input matSliderThumb #slider [(ngModel)]="data.server_configuration.storage">
+        </mat-slider>
+
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end" class="button">
+        <button mat-flat-button mat-dialog-close class="close-button">Close</button>
+        <button mat-flat-button class="confirm-button" (click)="UpdateCurrentStorage()">Confirm</button>
+    </mat-dialog-actions>
+
+</div>
