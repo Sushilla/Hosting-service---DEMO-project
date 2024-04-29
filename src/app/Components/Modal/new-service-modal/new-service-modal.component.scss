@@ -1,0 +1,58 @@
+::ng-deep .server-pricing .mdc-form-field.mat-internal-form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.server-pricing {
+  width: 100%;
+}
+
+.new-service-container {
+  margin: 10px;
+  min-height: 700px;
+  max-height: 700px;
+  min-width: 500px;
+}
+
+.decline {
+  background-color: var(--red);
+  color: #ffffff;
+}
+
+.pay {
+  background-color: var(--green);
+  color: #ffffff;
+  margin-left: 10px;
+}
+
+.pay:disabled {
+  background-color: rgb(207, 207, 207);
+}
+
+.container {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.form-field {
+  width: 100%;
+  margin: 10px 0;
+}
+
+.p-margin {
+  margin: 10px 0 !important;
+}
+
+.slider {
+  width: calc(100% - (16px * 2));
+}
+
+.check_out-margin {
+  margin: 20px !important;
+}
+
+.next-button {
+  background-color: #adbbda;
+  color: #ffffff;
+}

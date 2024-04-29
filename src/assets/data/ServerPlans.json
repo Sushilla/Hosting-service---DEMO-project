@@ -1,0 +1,32 @@
+[
+  {
+    "id": 0,
+    "cpu_properties": {
+      "cpu": "AMD Ryzen 5 3600",
+      "cores": 6,
+      "clock": 4.2,
+      "threads": 12
+    },
+    "ram": 64
+  },
+  {
+    "id": 1,
+    "cpu_properties": {
+      "cpu": "Intel Core i5 10600K",
+      "cores": 6,
+      "clock": 4.8,
+      "threads": 12
+    },
+    "ram": 128
+  },
+  {
+    "id": 2,
+    "cpu_properties": {
+      "cpu": "AMD EPYC 74F3",
+      "cores": 24,
+      "clock": 4,
+      "threads": 48
+    },
+    "ram": 256
+  }
+]

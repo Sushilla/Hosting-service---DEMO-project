@@ -1,0 +1,60 @@
+.container-list {
+  --container-margin: 20px;
+  --container-margin-left: 10px; // Half of --container-margin
+
+  margin: var(--container-margin) var(--container-margin)
+    var(--container-margin) var(--container-margin-left);
+  width: calc(100% - var(--container-margin) - var(--container-margin-left));
+  height: calc(100% - (var(--container-margin) * 2));
+  background-color: #ede8f5;
+  border-radius: 20px;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.75);
+}
+
+.server-header {
+  padding: 20px;
+}
+
+.server-list {
+  margin: 20px;
+  overflow-y: auto;
+  height: calc(100% - 76px - 40px);
+}
+
+.server-container {
+  border-bottom: 2px solid #c5c5c5;
+  padding: 10px;
+}
+
+.information {
+  width: 100%;
+}
+
+.text-information {
+  margin-left: 10px !important;
+}
+
+.domain-icon {
+  margin: 0 10px !important;
+}
+
+.margin-left {
+  margin-left: 10px !important;
+}
+
+.button-container {
+  max-width: 100px;
+}
+
+.button-container button {
+  color: #ffffff;
+  margin: 5px 10px;
+}
+
+.button-container .pay {
+  background-color: #7091e6;
+}
+
+.button-container .more {
+  background-color: #3d52a0;
+}

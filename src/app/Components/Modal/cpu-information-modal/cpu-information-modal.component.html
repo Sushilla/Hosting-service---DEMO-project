@@ -1,0 +1,15 @@
+<div class="margin">
+  <h2 mat-dialog-title>CPU properties</h2>
+
+  <mat-dialog-content>
+    <h3 class="bold">CPU: {{ data.cpu }}</h3>
+
+    <p>Cores: {{ data.cores }}</p>
+    <p>Clock speed: {{ data.clock }}GHZ</p>
+    <p>Threads: {{ data.threads }}</p>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-flat-button mat-dialog-close>Close</button>
+  </mat-dialog-actions>
+</div>

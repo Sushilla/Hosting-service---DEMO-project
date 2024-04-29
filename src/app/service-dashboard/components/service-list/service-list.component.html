@@ -1,0 +1,73 @@
+<div class="container-list">
+
+  <div class="display-align_center-justify_between server-header">
+    <h1 class="bold" style="margin: 0;">Server list:</h1>
+    <button mat-flat-button class="buttons" (click)="AddNewServiceModal()">New service</button>
+  </div>
+
+  <div class="server-list">
+
+    <div *ngFor="let service of UserServiceList" class="display-align_center-justify_between server-container">
+
+      <div class="display-align_center-justify_between wrap information">
+
+        <div>
+          <span class="display">
+            <p class="bold">Service type: </p>
+            <p class="text-information">{{GetServiceType(service.own_server, service.own_domain,
+              service.email_protection, service.server_configuration.current_server_plan)}}</p>
+          </span>
+
+          <span class="display">
+            <p class="bold">Name: </p>
+            <p class="text-information">{{service.service_name}}</p>
+          </span>
+
+          <span *ngIf="service.own_domain || service.own_server" class="display-align_center wrap">
+            <p class="display-align_center bold">Domain:
+              <mat-icon class="domain-icon"
+                [ngStyle]="{'color':service.own_domain ? 'var(--green)' : 'var(--red)'}">{{service.own_domain ?
+                "check_circle_outline" : "remove_circle_outline"}}</mat-icon>
+            </p>
+            <p>{{service.domain}}</p>
+          </span>
+
+          <span *ngIf="service.email_protection" class="display">
+            <p class="display-align_center bold">Email protection:
+              <mat-icon class="margin-left"
+                [ngStyle]="{'color':service.email_protection ? 'var(--green)' : 'var(--red)'}">{{service.email_protection
+                ?
+                "check_circle_outline" : "remove_circle_outline"}}</mat-icon>
+            </p>
+          </span>
+
+          <span *ngIf="service.own_server" class="display">
+            <p class="bold">Storage: </p>
+            <p class="margin-left">{{ service.server_configuration.storage -
+              service.server_configuration.used_storage }} GB free
+              ({{GetPercentageOfFreeStorage(service)*100 |
+              number: '1.2-2'}}%)</p>
+            <mat-icon [ngStyle]="{'color': GetPercentageOfFreeStorage(service) < 0.5 ? 'var(--green)' : 
+            GetPercentageOfFreeStorage(service) < 0.8 ? 'var(--orange)' : 'var(--red)'}">fiber_manual_record</mat-icon>
+          </span>
+
+        </div>
+
+        <span class="display-align_center">
+          <p class="bold">Price (yearly): </p>
+          <p class="margin-left">{{CalculateYearlyPrice(service) | number:
+            '1.2-2'}}€</p>
+        </span>
+
+      </div>
+
+      <div class="display-column button-container">
+        <button mat-flat-button class="pay" (click)="OpenSnackBar()">Pay</button>
+        <button mat-flat-button *ngIf=" service.own_server" class="more"
+          (click)="ServerInformationData.emit(service)">More</button>
+      </div>
+    </div>
+  </div>
+
+
+</div>

@@ -1,1 +1,109 @@
 /* You can add global styles to this file, and also import other style files */
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
+
+@font-face {
+  font-family: "Reddit Mono", monospace;
+  src: url("./assets/fonts/Reddit_Mono/RedditMono-VariableFont_wght.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  --red: #ff0000;
+  --orange: #ffa500;
+  --green: #28a745;
+  font-family: "Reddit Mono", monospace !important;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+p {
+  margin: 0 !important;
+}
+
+.material-icons {
+  font-family: "Material Icons" !important;
+}
+
+.display {
+  display: flex;
+}
+
+.display-justify_center {
+  display: flex;
+  justify-content: center;
+}
+
+.display-align_center {
+  display: flex;
+  align-items: center;
+}
+
+.display-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.display-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.display-justify_end {
+  display: flex;
+  justify-content: end;
+}
+
+.display-justify_evenly {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.display-align_center-column {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.display-justify_between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.display-align_center-justify_between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.display-align_center-justify_center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.buttons {
+  background-color: #28a745 !important;
+  color: #ffffff !important;
+}
+
+.noClick {
+  pointer-events: none;
+}
