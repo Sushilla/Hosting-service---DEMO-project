@@ -10,44 +10,54 @@
     <div *ngFor="let service of UserServiceList"
       style="border-bottom: 2px solid #c5c5c5; display: flex; justify-content: space-between; align-items: center; padding: 10px;">
 
-      <div>
-        <span class="display">
-          <p class="bold">Service type: </p>
-          <p style="margin-left: 10px !important;">{{GetServiceType(service.own_server, service.own_domain,
-            service.email_protection)}}</p>
-        </span>
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; width: 100%;">
 
-        <span class="display">
-          <p class="bold">Name: </p>
-          <p style="margin-left: 10px !important;">{{service.service_name}}</p>
-        </span>
+        <div>
+          <span class="display">
+            <p class="bold">Service type: </p>
+            <p style="margin-left: 10px !important;">{{GetServiceType(service.own_server, service.own_domain,
+              service.email_protection, service.server_configuration.current_server_plan)}}</p>
+          </span>
 
-        <span class="display" style="align-items: center; flex-wrap: wrap;">
-          <p class="display-align_center bold">Domain:
-            <mat-icon [ngStyle]="{'color':service.own_domain ? '#28a745' : 'red'}"
-              style="margin: 0 10px !important;">{{service.own_domain ?
-              "check_circle_outline" : "remove_circle_outline"}}</mat-icon>
-          </p>
+          <span class="display">
+            <p class="bold">Name: </p>
+            <p style="margin-left: 10px !important;">{{service.service_name}}</p>
+          </span>
 
-          <p>{{service.domain}}</p>
-        </span>
+          <span *ngIf="service.own_domain || service.own_server" class="display"
+            style="align-items: center; flex-wrap: wrap;">
+            <p class="display-align_center bold">Domain:
+              <mat-icon [ngStyle]="{'color':service.own_domain ? '#28a745' : 'red'}"
+                style="margin: 0 10px !important;">{{service.own_domain ?
+                "check_circle_outline" : "remove_circle_outline"}}</mat-icon>
+            </p>
 
-        <span class="display">
-          <p class="display-align_center bold">Email protection:
-            <mat-icon [ngStyle]="{'color':service.email_protection ? '#28a745' : 'red'}"
-              style="margin-left: 10px !important;">{{service.email_protection ?
-              "check_circle_outline" : "remove_circle_outline"}}</mat-icon>
-          </p>
-        </span>
+            <p>{{service.domain}}</p>
+          </span>
 
-        <span *ngIf="service.own_server" class="display">
-          <p class="bold">Storage: </p>
-          <p style="margin-left: 10px !important;">{{ service.server_configuration.storage -
-            service.server_configuration.used_storage }} GB free
-            ({{GetPercentageOfFreeStorage(service)*100 |
-            number: '1.2-2'}}%)</p>
-          <mat-icon [ngStyle]="{'color': GetPercentageOfFreeStorage(service) < 0.5 ? 'green' : 
+          <span *ngIf="service.email_protection" class="display">
+            <p class="display-align_center bold">Email protection:
+              <mat-icon [ngStyle]="{'color':service.email_protection ? '#28a745' : 'red'}"
+                style="margin-left: 10px !important;">{{service.email_protection ?
+                "check_circle_outline" : "remove_circle_outline"}}</mat-icon>
+            </p>
+          </span>
+
+          <span *ngIf="service.own_server" class="display">
+            <p class="bold">Storage: </p>
+            <p style="margin-left: 10px !important;">{{ service.server_configuration.storage -
+              service.server_configuration.used_storage }} GB free
+              ({{GetPercentageOfFreeStorage(service)*100 |
+              number: '1.2-2'}}%)</p>
+            <mat-icon [ngStyle]="{'color': GetPercentageOfFreeStorage(service) < 0.5 ? 'green' : 
             GetPercentageOfFreeStorage(service) < 0.8 ? 'orange' : 'red'}">fiber_manual_record</mat-icon>
+          </span>
+
+        </div>
+
+        <span class="display-align_center">
+          <p class="bold">Price (yearly): </p>
+          <p style="margin-left: 10px !important;">{{CalculateYearlyPrice(service)}}€</p>
         </span>
 
       </div>

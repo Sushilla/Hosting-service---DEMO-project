@@ -3,10 +3,10 @@
 
   <div class="container-services" style="display: flex; flex-direction: row; position: relative;">
     <app-server-resources *ngIf="SelectedService" style="width: 40%"
-      [UserPlanProperties]="ServerPlans[SelectedService.server_configuration.current_server_plan]" [UserServerProperties]="SelectedService"
-      (ClosePanel)="SelectedService = undefined"></app-server-resources>
+      [UserPlanProperties]="ServerPlans[SelectedService.server_configuration.current_server_plan]"
+      [UserServerProperties]="SelectedService" (ClosePanel)="SelectedService = undefined"></app-server-resources>
 
     <app-service-list [ngStyle]="{'width': SelectedService ? '60%' : '100%'}" [UserServiceList]="UserServersList"
-      (ServerInformationData)="SelectedService = $event"></app-service-list>
+      [ServicePricing]="PricingForService" (ServerInformationData)="SelectedService = $event"></app-service-list>
   </div>
 </div>

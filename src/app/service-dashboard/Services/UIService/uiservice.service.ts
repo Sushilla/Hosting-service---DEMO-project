@@ -8,8 +8,8 @@ export class UIServiceService {
   constructor() { }
 
   GenerateRandomIPv4Address() {
-    var address = [];
-    for (var i = 0; i < 4; i++) {
+    let address = [];
+    for (let i = 0; i < 4; i++) {
         address.push(Math.floor(Math.random() * 256));
     }
     return address.join('.');
