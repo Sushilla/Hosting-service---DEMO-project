@@ -1,1 +1,108 @@
-<p>new-service-modal works!</p>
+<div style="margin: 10px; min-height: 700px; max-height: 700px; min-width: 500px;">
+    <h2 mat-dialog-title>Select new service</h2>
+
+    <mat-dialog-content>
+
+        <mat-stepper labelPosition="bottom" #stepper>
+
+
+
+            <mat-step [stepControl]="SelectionPlanGroup" label="Domain" optional>
+                <form [formGroup]="SelectionPlanGroup">
+                    <section>
+                        <mat-checkbox color="primary" formControlName="SelectedDomain">Register domain</mat-checkbox>
+                    </section>
+                    <div [ngClass]="f.SelectedDomain ? '' : 'noClick'"
+                        [ngStyle]="{'background-color': !f.SelectedDomain ? '#d5d5d5' : 'transparent'}"
+                        style="margin: 10px 0; padding: 10px; border-radius: 10px;">
+                        <p>Enter domain:</p>
+                        <mat-form-field style="width: 100%; margin: 10px 0;" disabled>
+                            <input matInput type="text" placeholder="domain.com" formControlName="DomainValue"
+                                [readonly]="!f.SelectedDomain">
+                        </mat-form-field>
+                        <p>Price: {{data.domain_yearly}}€ yearly</p>
+                    </div>
+                </form>
+            </mat-step>
+
+
+
+
+            <mat-step [stepControl]="SelectionPlanGroup" label="Server" optional>
+                <form [formGroup]="SelectionPlanGroup">
+                    <section>
+                        <mat-checkbox color="primary" formControlName="SelectedServer">Server creation</mat-checkbox>
+                    </section>
+                    <div [ngClass]="f.SelectedServer ? '' : 'noClick'"
+                        [ngStyle]="{'background-color': !f.SelectedServer ? '#d5d5d5' : 'transparent'}"
+                        style="margin: 10px 0; padding: 10px; border-radius: 10px;">
+                        <p style="margin: 10px 0 !important;">Server pricing (monthly):</p>
+
+                        <mat-radio-group class="server-pricing"
+                            style="width: 100%; display: flex; justify-content: space-evenly;"
+                            [ngModelOptions]="{standalone: true}" [(ngModel)]="f.ServerPlan">
+                            <mat-radio-button *ngFor="let index of [0,1,2]" color="primary" [value]="index">
+                                <span>
+                                    <p class="bold">
+                                        {{PlanEnum[index]}}
+                                    </p>
+                                    <p>{{data.server_monthly[index] | number: '1.2-2'}}€</p>
+                                </span>
+                            </mat-radio-button>
+                        </mat-radio-group>
+
+                        <p style="margin: 10px 0 !important;">Select storage capacity</p>
+                        <section>
+                            <mat-checkbox color="primary" [ngModelOptions]="{standalone: true}"
+                                [(ngModel)]="f.ServerDefaultStorage">Use free storage (10 GB)</mat-checkbox>
+                        </section>
+
+                    </div>
+
+                </form>
+
+            </mat-step>
+
+
+
+
+            <mat-step [stepControl]="SelectionPlanGroup" label="Email" optional>
+                <form [formGroup]="SelectionPlanGroup">
+                    <section>
+                        <mat-checkbox color="primary" formControlName="SelectedEmailProtection">Use email
+                            protection?</mat-checkbox>
+                    </section>
+
+                    <div [ngClass]="f.SelectedEmailProtection ? '' : 'noClick'"
+                        [ngStyle]="{'background-color': !f.SelectedEmailProtection ? '#d5d5d5' : 'transparent'}"
+                        style="margin: 10px 0; padding: 10px; border-radius: 10px;">
+                        <p>Enter email:</p>
+                        <mat-form-field style="width: 100%; margin: 10px 0;" disabled>
+                            <input matInput type="text" placeholder="email@gmail.com" formControlName="EmailValue"
+                                [readonly]="!f.SelectedEmailProtection">
+                        </mat-form-field>
+                        <p>Price: {{data.domain_yearly}}€ yearly</p>
+                    </div>
+
+                </form>
+            </mat-step>
+
+            <mat-step>
+                <ng-template matStepLabel>Check out</ng-template>
+                <p>Total: 00.00€</p>
+                <div>
+                    <button mat-button mat-dialog-close>Cancel</button>
+                    <button mat-button>Check out</button>
+                </div>
+            </mat-step>
+
+        </mat-stepper>
+
+        <p>Year total: {{GetPriceForYear() | number: '1.2-2'}}€</p>
+
+    </mat-dialog-content>
+
+    <!-- <mat-dialog-actions align="end">
+      <button mat-flat-button mat-dialog-close>Close</button>
+    </mat-dialog-actions> -->
+</div>

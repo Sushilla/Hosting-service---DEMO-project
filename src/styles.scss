@@ -94,6 +94,10 @@ p {
   color: #ffffff !important;
 }
 
+.noClick {
+  pointer-events:none
+}
+
 .a {
   background-color: #3d52a0;
   background-color: #7091e6;

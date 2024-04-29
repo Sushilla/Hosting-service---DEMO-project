@@ -29,9 +29,5 @@ export class ServiceDashboardComponent {
 
   SelectedService!: UserServerList | undefined;
 
-  constructor() {
-    console.log(this.ServerPlans);
-    console.log(this.UserServersList[0]);
-    console.log(this.PricingForService);
-  }
+  constructor() {}
 }
