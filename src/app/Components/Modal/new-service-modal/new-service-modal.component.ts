@@ -76,6 +76,8 @@ export class NewServiceModalComponent {
     // Email
     SelectedEmailProtection: [false],
     EmailValue: [''],
+    // Name
+    ServiceName: [''],
   });
 
   constructor(
@@ -175,7 +177,8 @@ export class NewServiceModalComponent {
       }
 
       newService.server_configuration.used_storage = 0;
-      newService.service_name = 'asdasd';
+      if (typeof this.f.ServiceName == 'string')
+        newService.service_name = this.f.ServiceName;
     }
 
     this.dialogRef.close(newService);

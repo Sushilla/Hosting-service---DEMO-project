@@ -16,6 +16,7 @@ import { ServerPlanLongEnum } from '../../../service-dashboard/Models/Enum/Serve
 import { FormsModule } from '@angular/forms';
 import { Pricing } from '../../../service-dashboard/Models/Interface/Pricing';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatIconModule } from '@angular/material/icon';
 
 interface StoragePricing {
   server_configuration: ServerConfiguration;
@@ -36,6 +37,7 @@ interface StoragePricing {
     CommonModule,
     FormsModule,
     MatSliderModule,
+    MatIconModule,
   ],
   templateUrl: './storage-space-upgrade.component.html',
   styleUrl: './storage-space-upgrade.component.scss',
@@ -49,6 +51,8 @@ export class StorageSpaceUpgradeComponent {
     private dialogRef: MatDialogRef<StorageSpaceUpgradeComponent>
   ) {
     this.data = structuredClone(this.data_original);
+    if (this.data.server_configuration.storage < 128)
+      this.data.server_configuration.storage = 128;
   }
 
   GetFormatedStorageText(): string {
