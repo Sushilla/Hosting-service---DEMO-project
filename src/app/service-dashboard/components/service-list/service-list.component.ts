@@ -53,7 +53,7 @@ export class ServiceListComponent {
       price_yearly +=
         this.ServicePricing.server_monthly[
           service.server_configuration.current_server_plan
-        ];
+        ] * 12;
       // 10 GB are free. For more, need to pay monthly charge
       if (service.server_configuration.storage > 10)
         price_yearly +=
