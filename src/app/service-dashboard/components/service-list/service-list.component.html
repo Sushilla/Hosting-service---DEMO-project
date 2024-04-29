@@ -12,8 +12,8 @@
 
       <div>
         <span class="display">
-          <p class="bold">Server: </p>
-          <p style="margin-left: 10px !important;">{{service.server_name}}</p>
+          <p class="bold">Service type: </p>
+          <p style="margin-left: 10px !important;">{{service.service_name}}</p>
         </span>
 
         <span class="display" style="align-items: center; flex-wrap: wrap;">
@@ -23,7 +23,7 @@
               "check_circle_outline" : "remove_circle_outline"}}</mat-icon>
           </p>
 
-            <p>{{service.domain}}</p>
+          <p>{{service.domain}}</p>
         </span>
 
         <span class="display">
@@ -34,7 +34,7 @@
           </p>
         </span>
 
-        <span class="display">
+        <span *ngIf="service.own_server" class="display">
           <p class="bold">Storage: </p>
           <p style="margin-left: 10px !important;">{{ service.storage - service.used_storage }} GB free
             ({{GetPercentageOfFreeStorage(service)*100 |
@@ -45,8 +45,11 @@
 
       </div>
 
-      <div style="max-width: 100px;">
-        <button mat-flat-button style="background-color: #3d52a0; color: #ffffff;"
+      <div style="max-width: 100px; display: flex; flex-direction: column;">
+        <button mat-flat-button style="background-color: #7091e6; color: #ffffff; margin: 5px 10px"
+          (click)="ServerInformationData.emit(service)">Pay</button>
+        <button mat-flat-button *ngIf="service.own_server"
+          style="background-color: #3d52a0; color: #ffffff; margin: 5px 10px;"
           (click)="ServerInformationData.emit(service)">More</button>
       </div>
     </div>
