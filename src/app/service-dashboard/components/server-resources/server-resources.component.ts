@@ -1,10 +1,11 @@
-import { Component, Inject, inject, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { ServerProperties } from '../../Models/Interface/ServerProperties';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CPUInformationModalComponent } from '../../../Components/Modal/cpuinformation-modal/cpuinformation-modal.component';
+import { MatDialog } from '@angular/material/dialog';
+import { UserServerList } from '../../Models/Interface/UserServerList';
+import { CPUInformationModalComponent } from '../../../Components/Modal/cpu-information-modal/cpu-information-modal.component';
 
 @Component({
   selector: 'app-server-resources',
@@ -14,14 +15,11 @@ import { CPUInformationModalComponent } from '../../../Components/Modal/cpuinfor
   styleUrl: './server-resources.component.scss',
 })
 export class ServerResourcesComponent {
-  server_properties: any = {
-    storage: 10,
-    free: 0,
-  };
   server_load: number = 1;
 
-  @Input() UserServerProperties!: ServerProperties;
-  @Input() ServerName!: string;
+  @Input() UserPlanProperties!: ServerProperties;
+  @Input() UserServerProperties!: UserServerList;
+  @Output() ClosePanel = new EventEmitter();
 
   constructor(public dialog: MatDialog) {
     this.SimulateServerLoad();
@@ -58,10 +56,10 @@ export class ServerResourcesComponent {
   }
 
   OpenCPUInformationModal() {
-    console.log(this.UserServerProperties);
+    console.log(this.UserPlanProperties);
 
     this.dialog.open(CPUInformationModalComponent, {
-      data: this.UserServerProperties.cpu_properties,
+      data: this.UserPlanProperties.cpu_properties,
     });
   }
 

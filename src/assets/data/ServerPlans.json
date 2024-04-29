@@ -7,9 +7,7 @@
       "clock": 4.2,
       "threads": 12
     },
-    "ram": 64,
-    "storage": 10,
-    "used_storage": 10
+    "ram": 64
   },
   {
     "id": 1,
@@ -19,9 +17,7 @@
       "clock": 4.8,
       "threads": 12
     },
-    "ram": 128,
-    "storage": 10,
-    "used_storage": 10
+    "ram": 128
   },
   {
     "id": 2,
@@ -31,8 +27,6 @@
       "clock": 4,
       "threads": 48
     },
-    "ram": 256,
-    "storage": 10,
-    "used_storage": 10
+    "ram": 256
   }
 ]

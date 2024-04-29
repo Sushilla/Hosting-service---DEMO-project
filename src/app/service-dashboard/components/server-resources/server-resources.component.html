@@ -1,5 +1,11 @@
-<div class="container-resources display-center-column">
-  <h1 class="bold">{{ServerName}}</h1>
+<div class="container-resources display-align_center-column">
+  <div class="display-justify_end close">
+    <button mat-icon-button (click)="ClosePanel.emit()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <h1 class="bold">{{UserServerProperties.service_name}}</h1>
 
   <div class="circle display-justify_center">
     <img src="../../../../assets/icons/server.svg" />
@@ -17,19 +23,20 @@
     <h2>Server properties</h2>
     <div class="properties">
       <span class="cpu display-align_center">
-        <p>CPU: {{ UserServerProperties.cpu_properties.cpu }}</p>
+        <p>CPU: {{ UserPlanProperties.cpu_properties.cpu }}</p>
         <button mat-icon-button (click)="OpenCPUInformationModal()">
           <mat-icon>info</mat-icon>
         </button>
       </span>
 
-      <p>RAM: {{ UserServerProperties.ram }}GB</p>
-      <p>Storage: {{ UserServerProperties.storage }}GB</p>
-      <p>Free: {{ UserServerProperties.storage - UserServerProperties.used_storage }}GB</p>
+      <p>RAM: {{ UserPlanProperties.ram }} GB</p>
+      <p>Storage: {{ UserServerProperties.server_configuration.storage -
+        UserServerProperties.server_configuration.used_storage }} GB free of {{
+        UserServerProperties.server_configuration.storage }} GB</p>
     </div>
   </div>
 
-  <button mat-flat-button style="background-color: #28a745; color: #ffffff" (click)="IncreaseServerStorage()">
+  <button mat-flat-button class="buttons" (click)="IncreaseServerStorage()">
     Increase
   </button>
 </div>

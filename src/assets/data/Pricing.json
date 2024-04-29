@@ -1,0 +1,10 @@
+{
+    "domain_yearly": 8,
+    "email_protection_monthly": 8,
+    "storage_for_gb_monthly": 0.12,
+    "server_monthly": [
+        8.90,
+        12.30,
+        29.90
+    ]
+}
