@@ -1,3 +1,4 @@
 {
-  "currentServerPlan": 0
+  "current_server_plan": 0,
+  "server_name": "First server"
 }

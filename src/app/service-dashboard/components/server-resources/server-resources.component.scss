@@ -8,6 +8,7 @@
   height: calc(100% - (var(--container-margin) * 2));
   background-color: #ede8f5;
   border-radius: 20px;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.75);
 }
 
 .circle {
@@ -16,4 +17,33 @@
   height: var(--circle-size);
   border-radius: var(--circle-size);
   background: #adbbda;
+  margin: 10px;
+}
+
+.circle img {
+  width: 50%;
+  max-width: 100px;
+}
+
+.server-load p{
+  padding: 10px;
+}
+
+.server-load .position {
+  position: relative;
+  top: -60px;
+}
+
+.server-properties {
+  margin: 10px;
+}
+
+.properties {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.cpu button {
+  --button-left-margin: 5px;
+  position: absolute; right: calc(-48px - var(--button-left-margin))
 }
