@@ -30,8 +30,8 @@
       </span>
 
       <p>RAM: {{ UserPlanProperties.ram }} GB</p>
-      <p>Storage: {{ UserServerProperties.storage - UserServerProperties.used_storage }} GB free of {{
-        UserServerProperties.storage }} GB</p>
+      <p>Storage: {{ UserServerProperties.server_configuration.storage - UserServerProperties.server_configuration.used_storage }} GB free of {{
+        UserServerProperties.server_configuration.storage }} GB</p>
     </div>
   </div>
 

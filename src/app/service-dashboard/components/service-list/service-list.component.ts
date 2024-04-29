@@ -17,7 +17,7 @@ export class ServiceListComponent {
   @Output() ServerInformationData = new EventEmitter();
 
   GetPercentageOfFreeStorage(service_data: UserServerList): number {
-    return service_data.used_storage / service_data.storage;
+    return service_data.server_configuration.used_storage / service_data.server_configuration.storage;
   }
 
   AddNewServiceModal() {}

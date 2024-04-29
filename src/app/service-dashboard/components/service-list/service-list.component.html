@@ -36,7 +36,7 @@
 
         <span *ngIf="service.own_server" class="display">
           <p class="bold">Storage: </p>
-          <p style="margin-left: 10px !important;">{{ service.storage - service.used_storage }} GB free
+          <p style="margin-left: 10px !important;">{{ service.server_configuration.storage - service.server_configuration.used_storage }} GB free
             ({{GetPercentageOfFreeStorage(service)*100 |
             number: '1.2-2'}}%)</p>
           <mat-icon [ngStyle]="{'color': GetPercentageOfFreeStorage(service) < 0.5 ? 'green' : 
