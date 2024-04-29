@@ -8,11 +8,19 @@ import { Pricing } from '../../Models/Interface/Pricing';
 import { ServerPlanEnum } from '../../Models/Enum/ServerPlanEnum';
 import { MatDialog } from '@angular/material/dialog';
 import { NewServiceModalComponent } from '../../../Components/Modal/new-service-modal/new-service-modal.component';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { SnackBarPaymentComponent } from '../../../Components/SnackBar/snack-bar-payment/snack-bar-payment.component';
 
 @Component({
   selector: 'app-service-list',
   standalone: true,
-  imports: [MatTableModule, MatButtonModule, CommonModule, MatIconModule],
+  imports: [
+    MatTableModule,
+    MatButtonModule,
+    CommonModule,
+    MatIconModule,
+    MatSnackBarModule,
+  ],
   templateUrl: './service-list.component.html',
   styleUrl: './service-list.component.scss',
 })
@@ -23,11 +31,7 @@ export class ServiceListComponent {
 
   private PlanEnum = ServerPlanEnum;
 
-  constructor(private dialog: MatDialog) {
-    setTimeout(() => {
-      this.AddNewServiceModal();
-    }, 500);
-  }
+  constructor(private dialog: MatDialog, private _snackBar: MatSnackBar) {}
 
   GetPercentageOfFreeStorage(service_data: UserServerList): number {
     return (
@@ -70,6 +74,12 @@ export class ServiceListComponent {
           12;
     }
     return price_yearly;
+  }
+
+  OpenSnackBar() {
+    this._snackBar.openFromComponent(SnackBarPaymentComponent, {
+      duration: 1000,
+    });
   }
 
   AddNewServiceModal() {

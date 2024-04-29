@@ -7,23 +7,25 @@ import {
   MatDialogModule,
   MatDialogTitle,
 } from '@angular/material/dialog';
+import { ServerConfiguration } from '../../../service-dashboard/Models/Interface/UserServerList';
 import { MatButtonModule } from '@angular/material/button';
-import { CPUProperties } from '../../../service-dashboard/Models/Interface/ServerProperties';
 
 @Component({
-  selector: 'app-cpu-information-modal',
+  selector: 'app-storage-space-upgrade',
   standalone: true,
   imports: [
+    MatButtonModule,
     MatDialogTitle,
     MatDialogContent,
     MatDialogActions,
     MatDialogClose,
-    MatButtonModule,
     MatDialogModule,
   ],
-  templateUrl: './cpu-information-modal.component.html',
-  styleUrl: './cpu-information-modal.component.scss',
+  templateUrl: './storage-space-upgrade.component.html',
+  styleUrl: './storage-space-upgrade.component.scss',
 })
-export class CPUInformationModalComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: CPUProperties) {}
+export class StorageSpaceUpgradeComponent {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: ServerConfiguration) {
+    console.log(data);
+  }
 }

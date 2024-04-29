@@ -4,8 +4,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { ServerProperties } from '../../Models/Interface/ServerProperties';
 import { MatDialog } from '@angular/material/dialog';
-import { UserServerList } from '../../Models/Interface/UserServerList';
+import { ServerConfiguration, UserServerList } from '../../Models/Interface/UserServerList';
 import { CPUInformationModalComponent } from '../../../Components/Modal/cpu-information-modal/cpu-information-modal.component';
+import { StorageSpaceUpgradeComponent } from '../../../Components/Modal/storage-space-upgrade/storage-space-upgrade.component';
 
 @Component({
   selector: 'app-server-resources',
@@ -51,7 +52,18 @@ export class ServerResourcesComponent {
       currentLoad += trend * fluctuation;
 
       // Ensure the load stays within 0 and 100
-      this.server_load = Math.round(Math.max(1, Math.min(100, currentLoad)));
+      let maxPeak = 100;
+      if (
+        this.UserServerProperties.server_configuration.current_server_plan == 1
+      )
+        maxPeak = 83;
+      else if (
+        this.UserServerProperties.server_configuration.current_server_plan == 2
+      )
+        maxPeak = 28;
+      this.server_load = Math.round(
+        Math.max(1, Math.min(maxPeak, currentLoad))
+      );
     }, 1000);
   }
 
@@ -63,5 +75,14 @@ export class ServerResourcesComponent {
     });
   }
 
-  IncreaseServerStorage() {}
+  IncreaseServerStorage() {
+    const dialogRef = this.dialog.open(StorageSpaceUpgradeComponent, {
+      data: this.UserServerProperties.server_configuration,
+    });
+    dialogRef.afterClosed().subscribe((updatedStorage: ServerConfiguration) => {
+      if (updatedStorage) {
+        console.log(updatedStorage);
+      }
+    });
+  }
 }
