@@ -6,6 +6,8 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { Pricing } from '../../Models/Interface/Pricing';
 import { ServerPlanEnum } from '../../Models/Enum/ServerPlanEnum';
+import { MatDialog } from '@angular/material/dialog';
+import { NewServiceModalComponent } from '../../../Components/Modal/new-service-modal/new-service-modal.component';
 
 @Component({
   selector: 'app-service-list',
@@ -20,6 +22,12 @@ export class ServiceListComponent {
   @Output() ServerInformationData = new EventEmitter();
 
   private PlanEnum = ServerPlanEnum;
+
+  constructor(private dialog: MatDialog) {
+    setTimeout(() => {
+      this.AddNewServiceModal();
+    }, 500);
+  }
 
   GetPercentageOfFreeStorage(service_data: UserServerList): number {
     return (
@@ -61,9 +69,12 @@ export class ServiceListComponent {
           this.ServicePricing.storage_for_gb_monthly *
           12;
     }
-
     return price_yearly;
   }
 
-  AddNewServiceModal() {}
+  AddNewServiceModal() {
+    this.dialog.open(NewServiceModalComponent, {
+      data: this.ServicePricing,
+    });
+  }
 }
