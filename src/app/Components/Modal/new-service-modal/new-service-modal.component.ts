@@ -92,7 +92,6 @@ export class NewServiceModalComponent {
   }
 
   GetFormatedStorageText(): string {
-    // this.f.ServerStorageSize
     let storage: string = '';
     if (this.f.ServerStorageSize) {
       if (this.f.ServerStorageSize < 1000) {
@@ -104,7 +103,10 @@ export class NewServiceModalComponent {
         else storage = `${terabytes} TB`;
       }
     }
-
     return storage;
+  }
+
+  CreateNewService(){
+    
   }
 }

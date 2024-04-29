@@ -2,3 +2,18 @@
   display: flex;
   flex-direction: column;
 }
+
+.decline {
+  background-color: var(--red);
+  color: #ffffff;
+}
+
+.pay {
+  background-color: var(--green);
+  color: #ffffff;
+  margin-left: 10px;
+}
+
+.pay:disabled {
+  background-color: rgb(207, 207, 207);
+}

@@ -97,18 +97,17 @@
                 </form>
             </mat-step>
 
-            <mat-step>
-                <ng-template matStepLabel>Check out</ng-template>
-                <p>Total: 00.00€</p>
+            <mat-step label="Check out">
+                <p>Total payment for: {{GetPriceForYear() | number: '1.2-2'}}€</p>
                 <div>
-                    <button mat-button mat-dialog-close>Cancel</button>
-                    <button mat-button>Check out</button>
+                    <button class="decline" mat-button mat-dialog-close>Cancel</button>
+                    <button class="pay" mat-button [disabled]="GetPriceForYear() == 0">Check out</button>
                 </div>
             </mat-step>
 
         </mat-stepper>
 
-        <p>Year total: {{GetPriceForYear() | number: '1.2-2'}}€</p>
+        <p *ngIf="stepper.selectedIndex !== 3">Year total: {{GetPriceForYear() | number: '1.2-2'}}€</p>
 
     </mat-dialog-content>
 
