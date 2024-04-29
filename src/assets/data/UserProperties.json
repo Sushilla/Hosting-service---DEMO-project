@@ -6,7 +6,7 @@
     "own_server": true,
     "server_configuration": {
       "current_server_plan": 0,
-      "storage": 11,
+      "storage": 10,
       "used_storage": 8
     },
     "email_protection": false

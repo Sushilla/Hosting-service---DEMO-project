@@ -1,5 +1,5 @@
 <div class="container-resources display-align_center-column">
-  <div style="display: flex; justify-content: end; width: calc(100% - 20px); margin: 10px;">
+  <div class="display-justify_end close">
     <button mat-icon-button (click)="ClosePanel.emit()">
       <mat-icon>close</mat-icon>
     </button>
@@ -30,7 +30,8 @@
       </span>
 
       <p>RAM: {{ UserPlanProperties.ram }} GB</p>
-      <p>Storage: {{ UserServerProperties.server_configuration.storage - UserServerProperties.server_configuration.used_storage }} GB free of {{
+      <p>Storage: {{ UserServerProperties.server_configuration.storage -
+        UserServerProperties.server_configuration.used_storage }} GB free of {{
         UserServerProperties.server_configuration.storage }} GB</p>
     </div>
   </div>

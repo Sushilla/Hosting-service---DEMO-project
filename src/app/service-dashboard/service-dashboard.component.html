@@ -1,12 +1,13 @@
 <div class="container" style="overflow: hidden;">
   <app-header></app-header>
 
-  <div class="container-services" style="display: flex; flex-direction: row; position: relative;">
-    <app-server-resources *ngIf="SelectedService" style="width: 40%"
+  <div class="display-row container-services">
+    <app-server-resources *ngIf="SelectedService" class="server-resources"
       [UserPlanProperties]="ServerPlans[SelectedService.server_configuration.current_server_plan]"
       [UserServerProperties]="SelectedService" (ClosePanel)="SelectedService = undefined"></app-server-resources>
 
-    <app-service-list [ngStyle]="{'width': SelectedService ? '60%' : '100%'}" [UserServiceList]="UserServersList"
-      [ServicePricing]="PricingForService" (ServerInformationData)="SelectedService = $event"></app-service-list>
+    <app-service-list [ngClass]="!SelectedService ? 'service-list_expanded ': 'service-list_shrinked'"
+      [UserServiceList]="UserServersList" [ServicePricing]="PricingForService"
+      (ServerInformationData)="SelectedService = $event"></app-service-list>
   </div>
 </div>

@@ -1,8 +1,3 @@
-@keyframes move_in {
-  from {left: -40%;}
-  to {left: 0;}
-}
-
 .container {
   height: 100vh;
   width: 100vw;
@@ -13,5 +8,17 @@
 .container-services {
   width: 100%;
   height: calc(100% - var(--header-height));
+  position: relative;
+}
 
+.server-resources {
+  width: 40%;
+}
+
+.service-list_expanded {
+  width: 100%;
+}
+
+.service-list_shrinked {
+  width: 60%;
 }

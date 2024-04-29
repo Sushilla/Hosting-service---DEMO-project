@@ -10,6 +10,9 @@
 }
 
 * {
+  --red: #ff0000;
+  --orange: #ffa500;
+  --green: #28a745;
   font-family: "Reddit Mono", monospace !important;
 }
 
@@ -45,10 +48,41 @@ p {
   align-items: center;
 }
 
+.display-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.display-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.display-justify_end {
+  display: flex;
+  justify-content: end
+}
+
 .display-align_center-column {
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+
+.display-align_center-justify_between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.display-align_center-justify_center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrap {
+  flex-wrap: wrap;
 }
 
 .bold {
