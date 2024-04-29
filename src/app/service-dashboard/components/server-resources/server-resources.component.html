@@ -23,9 +23,8 @@
         </button>
       </span>
 
-      <p>RAM: {{ UserPlanProperties.ram }}GB</p>
-      <p>Storage: {{ UserServerProperties.storage }}GB</p>
-      <p>Free: {{ UserServerProperties.storage - UserServerProperties.used_storage }}GB</p>
+      <p>RAM: {{ UserPlanProperties.ram }} GB</p>
+      <p>Storage: {{ UserServerProperties.storage - UserServerProperties.used_storage }} GB free of {{ UserServerProperties.storage }} GB</p>
     </div>
   </div>
 

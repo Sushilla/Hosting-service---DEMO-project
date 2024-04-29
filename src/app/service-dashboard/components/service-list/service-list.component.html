@@ -5,10 +5,21 @@
     <button mat-button class="buttons" (click)="AddNewServiceModal()">New service</button>
   </div>
 
-  <div>
+  <div style="margin: 10px;">
 
-
-
+    <div *ngFor="let service of UserServiceList" style="border-bottom: 1px solid black;">
+      <p>Server: {{service.server_name}}</p>
+      <p style="display: flex; align-items: center;">Self domain:
+        <mat-icon [ngStyle]="{'color':service.own_domain ? '#28a745;' : 'red'}">{{service.own_domain ?
+          "check_circle_outline" : "remove_circle_outline"}}</mat-icon>
+      </p>
+      <p>IP address: {{service.domain}}</p>
+      <p style="display: flex; align-items: center;">Email protection:
+        <mat-icon [ngStyle]="{'color':service.email_protection ? '#28a745;' : 'red'}">{{service.email_protection ?
+          "check_circle_outline" : "remove_circle_outline"}}</mat-icon>
+      </p>
+      <p>Storage: {{service.storage}} GB</p>
+    </div>
   </div>
 
 
