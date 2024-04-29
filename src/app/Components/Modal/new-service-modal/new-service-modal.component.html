@@ -53,9 +53,19 @@
 
                         <p style="margin: 10px 0 !important;">Select storage capacity</p>
                         <section>
-                            <mat-checkbox color="primary" [ngModelOptions]="{standalone: true}"
-                                [(ngModel)]="f.ServerDefaultStorage">Use free storage (10 GB)</mat-checkbox>
+                            <mat-checkbox color="primary" formControlName="ServerDefaultStorage"
+                                [disabled]="!f.SelectedServer">Use free storage (10
+                                GB)</mat-checkbox>
                         </section>
+
+                        <div style="display: flex; flex-direction: column; align-items: center;">
+                            <label id="example-name-label" class="example-name-label">Storage space</label>
+                            <label class="example-value-label">{{GetFormatedStorageText()}}</label>
+                        </div>
+                        <mat-slider [disabled]="f.ServerDefaultStorage" max="10240" min="128" step="128"
+                            style="width: calc(100% - (16px * 2));">
+                            <input matSliderThumb formControlName="ServerStorageSize" #slider>
+                        </mat-slider>
 
                     </div>
 
@@ -69,7 +79,7 @@
             <mat-step [stepControl]="SelectionPlanGroup" label="Email" optional>
                 <form [formGroup]="SelectionPlanGroup">
                     <section>
-                        <mat-checkbox color="primary" formControlName="SelectedEmailProtection">Use email
+                        <mat-checkbox color="primary" formControlName="SelectedEmailProtection">Email
                             protection?</mat-checkbox>
                     </section>
 
@@ -81,7 +91,7 @@
                             <input matInput type="text" placeholder="email@gmail.com" formControlName="EmailValue"
                                 [readonly]="!f.SelectedEmailProtection">
                         </mat-form-field>
-                        <p>Price: {{data.domain_yearly}}€ yearly</p>
+                        <p>Price: {{data.email_protection_monthly}}€ monthly</p>
                     </div>
 
                 </form>

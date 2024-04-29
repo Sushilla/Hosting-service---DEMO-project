@@ -16,6 +16,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { Pricing } from '../../../service-dashboard/Models/Interface/Pricing';
+import { MatSliderModule } from '@angular/material/slider';
 
 @Component({
   selector: 'app-new-service-modal',
@@ -35,6 +36,7 @@ import { Pricing } from '../../../service-dashboard/Models/Interface/Pricing';
     MatInputModule,
     ReactiveFormsModule,
     FormsModule,
+    MatSliderModule,
   ],
   templateUrl: './new-service-modal.component.html',
   styleUrl: './new-service-modal.component.scss',
@@ -50,7 +52,7 @@ export class NewServiceModalComponent {
     SelectedServer: [false],
     ServerPlan: 0,
     ServerDefaultStorage: [true],
-    ServerStorageSize: 11,
+    ServerStorageSize: 128,
     // Email
     SelectedEmailProtection: [false],
     EmailValue: [''],
@@ -87,5 +89,22 @@ export class NewServiceModalComponent {
     if (this.f.SelectedEmailProtection)
       year_price += this.data.email_protection_monthly * 12;
     return year_price;
+  }
+
+  GetFormatedStorageText(): string {
+    // this.f.ServerStorageSize
+    let storage: string = '';
+    if (this.f.ServerStorageSize) {
+      if (this.f.ServerStorageSize < 1000) {
+        storage = `${this.f.ServerStorageSize} GB`;
+      } else {
+        var terabytes = Math.floor(this.f.ServerStorageSize / 1024);
+        var gigabytes = this.f.ServerStorageSize % 1024;
+        if (gigabytes != 0) storage = `${terabytes} TB and ${gigabytes} GB`;
+        else storage = `${terabytes} TB`;
+      }
+    }
+
+    return storage;
   }
 }
