@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -19,6 +19,7 @@ export class ServerResourcesComponent {
 
   @Input() UserPlanProperties!: ServerProperties;
   @Input() UserServerProperties!: UserServerList;
+  @Output() ClosePanel = new EventEmitter();
 
   constructor(public dialog: MatDialog) {
     this.SimulateServerLoad();

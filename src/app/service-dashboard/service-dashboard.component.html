@@ -1,10 +1,12 @@
 <div class="container">
   <app-header></app-header>
 
-  <div class="container-services" style="display: flex; flex-direction: row">
-    <app-server-resources style="width: 40%" [UserPlanProperties]="ServerPlans[UserServersList[0].current_server_plan]"
-      [UserServerProperties]="UserServersList[0]"></app-server-resources>
+  <div class="container-services" style="display: flex; flex-direction: row; position: relative;">
+    <app-server-resources *ngIf="SelectedService" style="width: 40%"
+      [UserPlanProperties]="ServerPlans[SelectedService.current_server_plan]" [UserServerProperties]="SelectedService"
+      (ClosePanel)="SelectedService = undefined"></app-server-resources>
 
-    <app-service-list style="width: 60%" [UserServiceList]="UserServersList"></app-service-list>
+    <app-service-list [ngStyle]="{'width': SelectedService ? '60%' : '100%'}" [UserServiceList]="UserServersList"
+      (ServerInformationData)="SelectedService = $event"></app-service-list>
   </div>
 </div>

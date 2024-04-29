@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { UserServerList } from '../../Models/Interface/UserServerList';
@@ -14,12 +14,11 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class ServiceListComponent {
   @Input() UserServiceList!: UserServerList[];
+  @Output() ServerInformationData = new EventEmitter();
 
-  GetPercentageOfFreeStorage(service_data: UserServerList): number{
-    return (service_data.used_storage / service_data.storage);
+  GetPercentageOfFreeStorage(service_data: UserServerList): number {
+    return service_data.used_storage / service_data.storage;
   }
 
   AddNewServiceModal() {}
-
-  OpenServerInformationPanel(service: UserServerList){}
 }
