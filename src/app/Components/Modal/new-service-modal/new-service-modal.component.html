@@ -1,5 +1,10 @@
-<div style="margin: 10px; min-height: 700px; max-height: 700px; min-width: 500px;">
-    <h2 mat-dialog-title>Select new service</h2>
+<div class="new-service-container">
+    <div class=".display-align_center-justify_between">
+        <h2 mat-dialog-title>Select new service</h2>
+        <button mat-icon-button mat-dialog-close>
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
 
     <mat-dialog-content>
 
@@ -7,16 +12,15 @@
 
 
 
-            <mat-step [stepControl]="SelectionPlanGroup" label="Domain" optional>
+            <mat-step [stepControl]="SelectionPlanGroup" label="Domain" [optional]="!f.SelectedDomain">
                 <form [formGroup]="SelectionPlanGroup">
                     <section>
                         <mat-checkbox color="primary" formControlName="SelectedDomain">Register domain</mat-checkbox>
                     </section>
-                    <div [ngClass]="f.SelectedDomain ? '' : 'noClick'"
-                        [ngStyle]="{'background-color': !f.SelectedDomain ? '#d5d5d5' : 'transparent'}"
-                        style="margin: 10px 0; padding: 10px; border-radius: 10px;">
+                    <div class="container" [ngClass]="f.SelectedDomain ? '' : 'noClick'"
+                        [ngStyle]="{'background-color': !f.SelectedDomain ? '#d5d5d5' : 'transparent'}">
                         <p>Enter domain:</p>
-                        <mat-form-field style="width: 100%; margin: 10px 0;" disabled>
+                        <mat-form-field class="form-field">
                             <input matInput type="text" placeholder="domain.com" formControlName="DomainValue"
                                 [readonly]="!f.SelectedDomain">
                         </mat-form-field>
@@ -28,18 +32,16 @@
 
 
 
-            <mat-step [stepControl]="SelectionPlanGroup" label="Server" optional>
+            <mat-step [stepControl]="SelectionPlanGroup" label="Server" [optional]="!f.SelectedServer">
                 <form [formGroup]="SelectionPlanGroup">
                     <section>
                         <mat-checkbox color="primary" formControlName="SelectedServer">Server creation</mat-checkbox>
                     </section>
-                    <div [ngClass]="f.SelectedServer ? '' : 'noClick'"
-                        [ngStyle]="{'background-color': !f.SelectedServer ? '#d5d5d5' : 'transparent'}"
-                        style="margin: 10px 0; padding: 10px; border-radius: 10px;">
-                        <p style="margin: 10px 0 !important;">Server pricing (monthly):</p>
+                    <div class="container" [ngClass]="f.SelectedServer ? '' : 'noClick'"
+                        [ngStyle]="{'background-color': !f.SelectedServer ? '#d5d5d5' : 'transparent'}">
+                        <p class="p-margin">Server pricing (monthly):</p>
 
-                        <mat-radio-group class="server-pricing"
-                            style="width: 100%; display: flex; justify-content: space-evenly;"
+                        <mat-radio-group class="display-justify_evenly server-pricing"
                             [ngModelOptions]="{standalone: true}" [(ngModel)]="f.ServerPlan">
                             <mat-radio-button *ngFor="let index of [0,1,2]" color="primary" [value]="index">
                                 <span>
@@ -51,19 +53,18 @@
                             </mat-radio-button>
                         </mat-radio-group>
 
-                        <p style="margin: 10px 0 !important;">Select storage capacity</p>
+                        <p lass="p-margin">Select storage capacity</p>
                         <section>
                             <mat-checkbox color="primary" formControlName="ServerDefaultStorage"
                                 [disabled]="!f.SelectedServer">Use free storage (10
                                 GB)</mat-checkbox>
                         </section>
 
-                        <div style="display: flex; flex-direction: column; align-items: center;">
-                            <label id="example-name-label" class="example-name-label">Storage space</label>
-                            <label class="example-value-label">{{GetFormatedStorageText()}}</label>
+                        <div class="display-align_center-column">
+                            <label>Storage space</label>
+                            <label>{{GetFormatedStorageText()}}</label>
                         </div>
-                        <mat-slider [disabled]="f.ServerDefaultStorage" max="10240" min="128" step="128"
-                            style="width: calc(100% - (16px * 2));">
+                        <mat-slider class="slider" [disabled]="f.ServerDefaultStorage" max="10240" min="128" step="128">
                             <input matSliderThumb formControlName="ServerStorageSize" #slider>
                         </mat-slider>
 
@@ -75,18 +76,17 @@
 
 
 
-            <mat-step [stepControl]="SelectionPlanGroup" label="Email" optional>
+            <mat-step [stepControl]="SelectionPlanGroup" label="Email" [optional]="!f.SelectedEmailProtection">
                 <form [formGroup]="SelectionPlanGroup">
                     <section>
                         <mat-checkbox color="primary" formControlName="SelectedEmailProtection">Email
                             protection</mat-checkbox>
                     </section>
 
-                    <div [ngClass]="f.SelectedEmailProtection ? '' : 'noClick'"
-                        [ngStyle]="{'background-color': !f.SelectedEmailProtection ? '#d5d5d5' : 'transparent'}"
-                        style="margin: 10px 0; padding: 10px; border-radius: 10px;">
+                    <div class="container" [ngClass]="f.SelectedEmailProtection ? '' : 'noClick'"
+                        [ngStyle]="{'background-color': !f.SelectedEmailProtection ? '#d5d5d5' : 'transparent'}">
                         <p>Enter email:</p>
-                        <mat-form-field style="width: 100%; margin: 10px 0;" disabled>
+                        <mat-form-field class="form-field">
                             <input matInput type="text" placeholder="email@gmail.com" formControlName="EmailValue"
                                 [readonly]="!f.SelectedEmailProtection">
                         </mat-form-field>
@@ -96,11 +96,15 @@
                 </form>
             </mat-step>
 
+
+
             <mat-step label="Check out">
-                <p *ngIf="GetPriceForYear() !== 0" style="margin: 20px !important;">Total payment for:
+                <p class="check_out-margin" [ngStyle]="{'visibility': GetPriceForYear() !== 0 ? 'visible': 'hidden'}">
+                    Total payment for:
                     {{GetPriceForYear() |
                     number: '1.2-2'}}€</p>
-                <p *ngIf="GetPriceForYear() === 0" style="margin: 20px !important;">You did not selected any provided
+                <p class="check_out-margin" [ngStyle]="{'visibility': GetPriceForYear() === 0 ? 'visible': 'hidden'}">
+                    You did not selected any provided
                     services.
                     Please, select one and continue.</p>
                 <div>
@@ -112,14 +116,11 @@
 
         </mat-stepper>
 
-        <div *ngIf="stepper.selectedIndex !==3" style="display: flex; justify-content: space-between;">
+        <div *ngIf="stepper.selectedIndex !==3" class="display-justify_between">
             <p>Year total: {{GetPriceForYear() | number: '1.2-2'}}€</p>
-            <button mat-flat-button (click)="MoveToNextPage()">Next</button>
+            <button mat-flat-button class="next-button" (click)="MoveToNextPage()">Next</button>
         </div>
 
     </mat-dialog-content>
 
-    <!-- <mat-dialog-actions align="end">
-      <button mat-flat-button mat-dialog-close>Close</button>
-    </mat-dialog-actions> -->
 </div>

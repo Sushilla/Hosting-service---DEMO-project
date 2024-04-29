@@ -20,7 +20,12 @@ import { ServerPlanLongEnum } from '../../../service-dashboard/Models/Enum/Serve
 import { CommonModule } from '@angular/common';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { Pricing } from '../../../service-dashboard/Models/Interface/Pricing';
 import { MatSliderModule } from '@angular/material/slider';
@@ -29,6 +34,7 @@ import {
   UserServerList,
 } from '../../../service-dashboard/Models/Interface/UserServerList';
 import { UIServiceService } from '../../../service-dashboard/Services/UIService/uiservice.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-new-service-modal',
@@ -49,6 +55,7 @@ import { UIServiceService } from '../../../service-dashboard/Services/UIService/
     ReactiveFormsModule,
     FormsModule,
     MatSliderModule,
+    MatIconModule,
   ],
   templateUrl: './new-service-modal.component.html',
   styleUrl: './new-service-modal.component.scss',
@@ -174,8 +181,7 @@ export class NewServiceModalComponent {
     this.dialogRef.close(newService);
   }
 
-  MoveToNextPage(){
+  MoveToNextPage() {
     this.stepper.selectedIndex += 1;
   }
 }
-

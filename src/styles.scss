@@ -63,10 +63,19 @@ p {
   justify-content: end
 }
 
+.display-justify_evenly{
+  display: flex; justify-content: space-evenly;
+}
+
 .display-align_center-column {
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+
+.display-justify_between {
+  display: flex;
+  justify-content: space-between;
 }
 
 .display-align_center-justify_between {
@@ -74,6 +83,7 @@ p {
   align-items: center;
   justify-content: space-between;
 }
+
 
 .display-align_center-justify_center {
   display: flex;
