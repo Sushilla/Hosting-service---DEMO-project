@@ -21,7 +21,7 @@ export class ServerResourcesComponent {
   @Input() UserServerProperties!: UserServerList;
   @Output() ClosePanel = new EventEmitter();
 
-  constructor(public dialog: MatDialog) {
+  constructor(private dialog: MatDialog) {
     this.SimulateServerLoad();
   }
 

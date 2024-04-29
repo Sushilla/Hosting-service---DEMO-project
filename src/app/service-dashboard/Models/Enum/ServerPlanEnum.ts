@@ -3,3 +3,9 @@ export enum ServerPlanEnum{
     M,
     L
 }
+
+export enum ServerPlanLongEnum{
+    Small = 0,
+    Medium,
+    Large
+}
